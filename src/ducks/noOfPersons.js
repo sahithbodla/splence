@@ -1,4 +1,4 @@
-const initialState = 0;
+const initialState = '';
 
 const noOfPersonsReducer = (state = initialState, action) => {
   switch (action.type) {

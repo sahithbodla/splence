@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ExpenseForm from './components/ExpenseForm/ExpenseForm';
 import Result from './components/Result/Result';
-import NoOfPersons from './components/NoOfPersons/NoOfPersons';
+import NoOfPersons from './components/NoOfPersons';
 
 function App() {
   return (
