@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, Tooltip } from '@mui/material';
+import { InfoOutlined } from '@mui/icons-material';
 import Input from '../Input';
 import './ExpenseForm.css';
 
@@ -33,9 +34,21 @@ const ExpenseForm = (props) => {
       {arr.map((slNo) => (
         <Input key={slNo} slNo={slNo} setFocus={setFocus} setError={setError} />
       ))}
-      <Button variant="contained" color="success" disabled={disabled}>
-        Check the Result
-      </Button>
+      <div className="buttonDiv">
+        <Button variant="contained" color="success" disabled={disabled}>
+          Check the Result
+        </Button>
+        <Tooltip
+          title={
+            disabled
+              ? 'Please fill out all the fields'
+              : 'Click to know the result'
+          }
+          arrow={true}
+        >
+          <InfoOutlined />
+        </Tooltip>
+      </div>
     </div>
   );
 };

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Tooltip } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import './Input.css';
 
 const Input = (props) => {
   const { slNo, addPerson, setFocus, setError } = props;
+
   const [name, setName] = useState('');
   const [expense, setExpense] = useState('');
 
@@ -13,6 +17,9 @@ const Input = (props) => {
 
   const [errorName, setErrorName] = useState('');
   const [errorExpense, setErrorExpense] = useState('');
+
+  const [openTooltipName, setOpenTooltipName] = useState(false);
+  const [openTooltipExpense, setOpenTooltipExpense] = useState(false);
 
   useEffect(() => {
     addPerson({ slNo, name, expense });
@@ -52,14 +59,31 @@ const Input = (props) => {
         </Grid>
         <Grid item md={6}>
           <TextField
-            id="standard-basic"
+            id="input-with-icon-text-field"
             label="Name"
             variant="standard"
             name="name"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Tooltip
+                    title={errorName}
+                    arrow={true}
+                    open={openTooltipName}
+                  >
+                    <AccountCircleIcon color={errorName && 'error'} />
+                  </Tooltip>
+                </InputAdornment>
+              ),
+            }}
             onChange={(e) =>
               setName((state) => {
                 setFocusName(true);
                 setErrorName('');
+                setOpenTooltipName(true);
+                setTimeout(() => {
+                  setOpenTooltipName(false);
+                }, 5000);
                 return e.target.value;
               })
             }
@@ -67,14 +91,31 @@ const Input = (props) => {
         </Grid>
         <Grid item md={4}>
           <TextField
-            id="standard-basic"
+            id="input-with-icon-text-field"
             label="Expense"
             variant="standard"
             name="expense"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Tooltip
+                    title={errorExpense}
+                    arrow={true}
+                    open={openTooltipExpense}
+                  >
+                    <CurrencyRupeeIcon color={errorExpense && 'error'} />
+                  </Tooltip>
+                </InputAdornment>
+              ),
+            }}
             onChange={(e) =>
               setExpense((state) => {
                 setFocusExpense(true);
                 setErrorExpense('');
+                setOpenTooltipExpense(true);
+                setTimeout(() => {
+                  setOpenTooltipExpense(false);
+                }, 5000);
                 return e.target.value;
               })
             }
