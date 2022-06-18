@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ExpenseForm from './components/ExpenseForm/ExpenseForm';
+import ExpenseForm from './components/ExpenseForm';
 import Result from './components/Result/Result';
 import NoOfPersons from './components/NoOfPersons';
 

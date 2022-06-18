@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, Tooltip } from '@mui/material';
 import { InfoOutlined } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import './NoOfPersons.css';
 
 const NoOfPersons = (props) => {
@@ -17,9 +18,9 @@ const NoOfPersons = (props) => {
     } else if (focused && number === '') {
       setDisable(true);
       setError('Please enter a Number');
-    } else if ((focused && Number(number) < 1) || Number(number) > 10) {
+    } else if ((focused && Number(number) < 2) || Number(number) > 9) {
       setDisable(true);
-      setError('Please enter valid number between 1 and 10');
+      setError('Please enter valid number between 2 and 9');
     } else {
       setDisable(false);
     }
@@ -36,8 +37,8 @@ const NoOfPersons = (props) => {
   };
 
   return (
-    <div className="midPage">
-      {`Please enter total number of friends (max-10)`} &nbsp;
+    <div className="midPage1">
+      {`Please enter total number of friends (max-9)`} &nbsp;
       <Input onChange={numberChange} value={number} />
       &nbsp;&nbsp;
       <Button
@@ -45,7 +46,7 @@ const NoOfPersons = (props) => {
         color="primary"
         disabled={!focused || disable}
       >
-        Next
+        <Link to="/form">Next</Link>
       </Button>
       &nbsp;&nbsp;
       <Tooltip title={error} arrow={true} open={openTooltip}>

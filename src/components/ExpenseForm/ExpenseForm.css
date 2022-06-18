@@ -1,11 +1,7 @@
-.midPage1 {
+.midPage {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-a {
-  text-decoration: none;
-  color: white;
+  flex-direction: column;
 }

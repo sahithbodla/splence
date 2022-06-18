@@ -1,14 +1,14 @@
-const initialState = [
-  {
-    name: 'Sahith',
-    expense: 20,
-  },
-];
-
-const personsReducer = (state = initialState, action) => {
+const personsReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'ADD_PERSON':
-      return [...state, action.data];
+    case 'ADD_PERSON': {
+      return {
+        ...state,
+        [action.data.slNo]: {
+          name: action.data.name,
+          expense: action.data.expense,
+        },
+      };
+    }
     default:
       return state;
   }
