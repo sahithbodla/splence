@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Tooltip } from '@mui/material';
 import { InfoOutlined } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import Input from '../Input';
 import './ExpenseForm.css';
 
@@ -36,7 +37,7 @@ const ExpenseForm = (props) => {
       ))}
       <div className="buttonDiv">
         <Button variant="contained" color="success" disabled={disabled}>
-          Check the Result
+          <Link to="/result">Check the Result</Link>
         </Button>
         <Tooltip
           title={
