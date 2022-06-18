@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import './Result.css';
 
 const Result = (props) => {
   const { personsInfo } = props;
   const [perHead, setPerHead] = useState('');
   const [resultObj, setResultObj] = useState({});
+  const resultArr = [];
+
   useEffect(() => {
     const personsInfoArray = Object.entries(personsInfo) || [];
     const totalExpense = personsInfoArray.reduce((sum, person) => {
@@ -63,7 +66,31 @@ const Result = (props) => {
     console.log(excessArray, deficitArray, mappingObj);
     setResultObj(mappingObj);
   }, [personsInfo]);
-  return <div className="midPage1">Per Head is {perHead}</div>;
+
+  if (Object.keys(resultObj).length > 0)
+    for (let [key, arr] of Object.entries(resultObj)) {
+      arr.map((obj) => {
+        resultArr.push(
+          `${personsInfo[obj.person].name} should give ${
+            obj.amount.toFixed(2) * -1
+          } to ${personsInfo[key].name}`
+        );
+        return null;
+      });
+    }
+
+  console.log(resultArr);
+
+  return (
+    <div className="midPage1">
+      <div className="result">
+        <h1>Expenditure per head is {perHead}</h1>
+        {resultArr.map((str) => (
+          <p>{str}</p>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Result;
